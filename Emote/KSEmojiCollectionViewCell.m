@@ -32,12 +32,17 @@
 #pragma mark - Activity indicator
 -(void)showActivityIndicator
 {
-    [_activityIndicator startAnimating];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_activityIndicator startAnimating];
+    });
+    
 }
 
 -(void)hideActivityIndicator
 {
-    [_activityIndicator stopAnimating];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_activityIndicator stopAnimating];
+    });
 }
 
 @end

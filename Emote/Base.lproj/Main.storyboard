@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,6 +51,7 @@
                                 <connections>
                                     <outlet property="activityIndicator" destination="3Jj-ON-U7p" id="xhM-6e-c3H"/>
                                     <outlet property="emojiImageView" destination="zQm-ea-HDZ" id="Z07-mj-Uc1"/>
+                                    <segue destination="Ign-Iu-qlw" kind="presentation" identifier="EmojiDetailSegue" id="lRj-SV-8hl"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -65,6 +67,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hX-FJ-2eE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1404" y="-224.4377811094453"/>
+        </scene>
+        <!--Emoji Detail View Controller-->
+        <scene sceneID="mGd-2J-ImE">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" id="Ign-Iu-qlw" customClass="KSEmojiDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GFo-cb-0WS"/>
+                        <viewControllerLayoutGuide type="bottom" id="S3w-fk-XIO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XwB-3E-GLf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hlg-CU-ba8">
+                                <rect key="frame" x="16" y="20" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="UxA-Tq-pbB"/>
+                                    <constraint firstAttribute="height" constant="50" id="di2-0S-SuF"/>
+                                </constraints>
+                                <state key="normal" image="closebutton"/>
+                                <connections>
+                                    <action selector="closeButtonAction:" destination="Ign-Iu-qlw" eventType="touchUpInside" id="tm4-gQ-pIm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Hlg-CU-ba8" firstAttribute="leading" secondItem="XwB-3E-GLf" secondAttribute="leadingMargin" id="FJd-l0-COT"/>
+                            <constraint firstItem="Hlg-CU-ba8" firstAttribute="top" secondItem="GFo-cb-0WS" secondAttribute="bottom" id="SPx-Jr-gFp"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="6EW-sb-S37" appends="YES" id="xea-De-Jok"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mRI-FK-5Ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" id="6EW-sb-S37">
+                    <connections>
+                        <action selector="swipeGestureAction:" destination="Ign-Iu-qlw" id="Eec-sK-HCK"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2303.1999999999998" y="-224.4377811094453"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FPF-sj-O4W">
@@ -85,4 +132,7 @@
             <point key="canvasLocation" x="464.80000000000001" y="-224.4377811094453"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="closebutton" width="600" height="600"/>
+    </resources>
 </document>

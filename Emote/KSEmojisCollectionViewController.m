@@ -11,6 +11,7 @@
 #import "KSEmojiImageDownloader.h"
 #import "KSEmoji.h"
 #import "KSEmojiCollectionViewCell.h"
+#import "KSEmojiDetailViewController.h"
 
 @interface KSEmojisCollectionViewController () <UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
@@ -24,11 +25,12 @@
 @implementation KSEmojisCollectionViewController
 
 static NSString * const reuseIdentifier = @"EmojiCell";
-static NSUInteger const imageWidth = 20;
+static NSUInteger const imageWidth = 25;
 
-#pragma mark - View controller life cycle methods
+#pragma mark - View controller life cycle
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     
     [super viewDidLoad];
     
@@ -55,7 +57,7 @@ static NSUInteger const imageWidth = 20;
     [self terminateAllEmojiImageDownloads];
 }
 
-#pragma mark - UICollectionViewDataSource methods
+#pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -66,7 +68,7 @@ static NSUInteger const imageWidth = 20;
     return _emojis.count;
 }
 
-#pragma mark UICollectionViewDelegate methods
+#pragma mark UICollectionViewDelegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     KSEmoji *emoji = _emojis[indexPath.row];
@@ -88,7 +90,11 @@ static NSUInteger const imageWidth = 20;
     return cell;
 }
 
-#pragma mark UICollectionViewDelegateFlowLayout methods
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+
+#pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(_imageSize, _imageSize);
@@ -104,7 +110,7 @@ static NSUInteger const imageWidth = 20;
     return _sectionInsets.left;
 }
 
-#pragma mark - Emoji data methods
+#pragma mark - Emoji data
 -(void)fetchEmojiData
 {
     KSEmojiDataController *emojiDataController = [KSEmojiDataController new];
@@ -116,7 +122,7 @@ static NSUInteger const imageWidth = 20;
     }];
 }
 
-#pragma mark - Emoji image methods
+#pragma mark - Emoji image
 -(void)beginEmojiImageDownloadForEmoji:(KSEmoji*)emoji forIndexPath:(NSIndexPath*)indexPath
 {
     KSEmojiImageDownloader *emojiImageDownloader = _emojiImageDownloadsInProgress[indexPath];
@@ -141,7 +147,7 @@ static NSUInteger const imageWidth = 20;
     }
 }
 
-- (void)loadImagesForOnscreenRows
+-(void)loadImagesForOnscreenRows
 {
     if (_emojis.count > 0)
     {
@@ -158,8 +164,7 @@ static NSUInteger const imageWidth = 20;
     }
 }
 
-
-- (void)terminateAllEmojiImageDownloads
+-(void)terminateAllEmojiImageDownloads
 {
     NSArray *allEmojiImageDownloads = [_emojiImageDownloadsInProgress allValues];
     [allEmojiImageDownloads makeObjectsPerformSelector:@selector(cancelEmojiImageDownload)];
@@ -167,8 +172,7 @@ static NSUInteger const imageWidth = 20;
 }
 
 #pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (!decelerate)
     {
@@ -176,9 +180,23 @@ static NSUInteger const imageWidth = 20;
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self loadImagesForOnscreenRows];
+}
+
+#pragma mark - Storyboard
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"EmojiDetailSegue"])
+    {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:(KSEmojiCollectionViewCell*)sender];
+        KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+        CGRect cellFrame = [self.collectionView convertRect:cell.frame toView:self.view];
+        KSEmojiDetailViewController *emojiDetailViewController = (KSEmojiDetailViewController*)[segue destinationViewController];
+        emojiDetailViewController.emoji = _emojis[indexPath.row];
+        emojiDetailViewController.emojiRootPostion = cellFrame;
+    }
 }
 
 @end

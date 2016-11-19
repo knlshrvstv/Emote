@@ -18,6 +18,7 @@
 		B657086D1DE0A79A00AFFD49 /* KSEmojiDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B657086C1DE0A79A00AFFD49 /* KSEmojiDataController.m */; };
 		B65708701DE0B0C700AFFD49 /* KSEmojiImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = B657086F1DE0B0C700AFFD49 /* KSEmojiImageDownloader.m */; };
 		B65708741DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708731DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m */; };
+		B65708771DE0D08300AFFD49 /* KSEmojiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708761DE0D08300AFFD49 /* KSEmojiDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		B657086F1DE0B0C700AFFD49 /* KSEmojiImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojiImageDownloader.m; sourceTree = "<group>"; };
 		B65708721DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSEmojiCollectionViewCell.h; sourceTree = "<group>"; };
 		B65708731DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojiCollectionViewCell.m; sourceTree = "<group>"; };
+		B65708751DE0D08300AFFD49 /* KSEmojiDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSEmojiDetailViewController.h; sourceTree = "<group>"; };
+		B65708761DE0D08300AFFD49 /* KSEmojiDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojiDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,8 @@
 			children = (
 				B657085E1DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.h */,
 				B657085F1DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.m */,
+				B65708751DE0D08300AFFD49 /* KSEmojiDetailViewController.h */,
+				B65708761DE0D08300AFFD49 /* KSEmojiDetailViewController.m */,
 			);
 			name = "View Contoller";
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				B657084C1DE09F1300AFFD49 /* AppDelegate.m in Sources */,
 				B65708671DE0A3A700AFFD49 /* KSEmoji.m in Sources */,
 				B65708491DE09F1300AFFD49 /* main.m in Sources */,
+				B65708771DE0D08300AFFD49 /* KSEmojiDetailViewController.m in Sources */,
 				B65708741DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

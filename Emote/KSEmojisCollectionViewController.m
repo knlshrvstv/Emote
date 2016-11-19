@@ -132,14 +132,21 @@ static NSUInteger const imageWidth = 25;
         _emojiImageDownloadsInProgress[indexPath] = emojiImageDownloader;
         [emojiImageDownloader startEmojiImageDownloadWithURL:emoji.URL WithCompletion:^(NSData *data, NSError *error) {
             [_emojiImageDownloadsInProgress removeObjectForKey:indexPath];
+            KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
             if (data)
             {
                 emoji.image = [UIImage imageWithData:data];
-                KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [cell hideActivityIndicator];
                     [cell updateCellWithEmoji:emoji];
+                });
+            }
+            else
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell hideActivityIndicator];
+                    [cell updateCellWithPlaceholder];
                 });
             }
         }];

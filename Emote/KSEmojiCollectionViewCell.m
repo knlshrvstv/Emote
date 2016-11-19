@@ -21,12 +21,16 @@
 #pragma mark - Collection view cell setup
 -(void)updateCellWithEmoji:(KSEmoji*)emoji
 {
-    _emojiImageView.image = emoji.image;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _emojiImageView.image = emoji.image;
+    });
 }
 
 -(void)updateCellWithPlaceholder
 {
-    _emojiImageView.image = [UIImage imageNamed:@"placeholder.png"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _emojiImageView.image = [UIImage imageNamed:@"placeholder.png"];
+    });
 }
 
 #pragma mark - Activity indicator

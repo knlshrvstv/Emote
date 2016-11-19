@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rol-Qe-ePz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YJm-ea-Vxo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -64,7 +64,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hX-FJ-2eE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1404" y="-224.4377811094453"/>
+            <point key="canvasLocation" x="1943" y="-226"/>
         </scene>
         <!--Emoji Detail View Controller-->
         <scene sceneID="mGd-2J-ImE">
@@ -124,12 +124,63 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2303.1999999999998" y="-224.4377811094453"/>
+            <point key="canvasLocation" x="2921" y="-226"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="24j-WE-pzT">
+            <objects>
+                <viewController id="YJm-ea-Vxo" customClass="KSRootViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iv7-Nl-IeO"/>
+                        <viewControllerLayoutGuide type="bottom" id="RUv-nc-5Sj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oeo-c9-D1P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="11s-9s-5Nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-740" y="-226"/>
+        </scene>
+        <!--Splash View Controller-->
+        <scene sceneID="UMh-J1-iwW">
+            <objects>
+                <viewController storyboardIdentifier="KSSplashViewController" id="MQA-7K-dfv" customClass="KSSplashViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oqk-xU-I5G"/>
+                        <viewControllerLayoutGuide type="bottom" id="m0k-BN-NVK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0nS-75-Ryf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emote" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-dX-ruG">
+                                <rect key="frame" x="161.5" y="323.5" width="52.5" height="20"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ToP-dX-ruG" firstAttribute="centerX" secondItem="0nS-75-Ryf" secondAttribute="centerX" id="5xk-JB-tRX"/>
+                            <constraint firstItem="ToP-dX-ruG" firstAttribute="centerY" secondItem="0nS-75-Ryf" secondAttribute="centerY" id="atd-co-1FK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appTitleLabel" destination="ToP-dX-ruG" id="qEk-iN-Tpf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KF3-Cq-XaG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="-226"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FPF-sj-O4W">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rol-Qe-ePz" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="KSMainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="rol-Qe-ePz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="x4P-5e-Tvj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -142,7 +193,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RsM-Dx-Chk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="464.80000000000001" y="-224.4377811094453"/>
+            <point key="canvasLocation" x="946" y="-226"/>
         </scene>
     </scenes>
     <resources>

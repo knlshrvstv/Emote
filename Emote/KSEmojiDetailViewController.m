@@ -29,6 +29,7 @@ static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation
     [self setupEmojiLabel];
     [self setupEmojiImagePositionAnimationWhilePresenting:YES];
     [self setupEmojiImageScaleAnimationWhilePresenting:YES];
+    [self setupEmojiLabelOpacityAnimationWhilePresenting:YES];
 }
 
 #pragma mark - View setup
@@ -105,11 +106,40 @@ static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation
     _emojiImageView.contentScaleFactor = toValue;
 }
 
+-(void)setupEmojiLabelOpacityAnimationWhilePresenting:(BOOL)presenting
+{
+    CGFloat fromValue;
+    CGFloat toValue;
+    
+    if (presenting)
+    {
+        fromValue = 0.0f;
+        toValue = 1.0f;
+    }
+    else
+    {
+        fromValue = 1.0f;
+        toValue = 0.0f;
+    }
+
+    CABasicAnimation *emojiImageBasicAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    emojiImageBasicAnimation.fromValue = @(fromValue);
+    emojiImageBasicAnimation.toValue = @(toValue);
+    emojiImageBasicAnimation.duration = 0.8;
+    emojiImageBasicAnimation.fillMode = kCAFillModeForwards;
+    emojiImageBasicAnimation.removedOnCompletion = NO;
+    emojiImageBasicAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
+    [_emojiLabel.layer addAnimation:emojiImageBasicAnimation forKey:nil];
+    
+}
+
 #pragma mark - IBAction
 - (IBAction)closeButtonAction:(id)sender {
     
     [self setupEmojiImagePositionAnimationWhilePresenting:NO];
     [self setupEmojiImageScaleAnimationWhilePresenting:NO];
+    [self setupEmojiLabelOpacityAnimationWhilePresenting:NO];
 }
 
 #pragma mark - CAAnimationDelegate

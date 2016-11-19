@@ -7,6 +7,7 @@
 //
 
 #import "KSEmojisCollectionViewController.h"
+#import "KSEmojiDataController.h"
 
 @interface KSEmojisCollectionViewController ()
 
@@ -26,6 +27,11 @@ static NSString * const reuseIdentifier = @"EmojiCell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
+    
+    KSEmojiDataController *emojiDataController = [KSEmojiDataController new];
+    [emojiDataController fetchEmojisFromAPIWithCompletion:^(NSArray *emojis, NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

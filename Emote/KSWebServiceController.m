@@ -10,7 +10,7 @@
 
 @implementation KSWebServiceController
 
--(void)httpGetFromURL:(NSURL*)URL completionHandler:(void(^)(NSData *data, NSError *error))completion
+-(void)httpGetFromURL:(NSURL*)URL completion:(void(^)(NSData *data, NSError *error))completion
 {
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:URL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     

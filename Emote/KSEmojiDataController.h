@@ -10,4 +10,6 @@
 
 @interface KSEmojiDataController : NSObject
 
+-(void)fetchEmojisFromAPIWithCompletion:(void (^)(NSArray *emojis, NSError *error))completion;
+
 @end

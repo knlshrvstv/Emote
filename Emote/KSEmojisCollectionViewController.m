@@ -25,6 +25,7 @@
 @implementation KSEmojisCollectionViewController
 
 static NSString * const reuseIdentifier = @"EmojiCell";
+static NSString * const detailsSegueIdentifier = @"EmojiDetailSegue";
 static NSUInteger const imageWidth = 25;
 
 #pragma mark - View controller life cycle
@@ -184,9 +185,22 @@ static NSUInteger const imageWidth = 25;
 }
 
 #pragma mark - Storyboard
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:detailsSegueIdentifier])
+    {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:(KSEmojiCollectionViewCell*)sender];
+        KSEmoji *emoji = _emojis[indexPath.row];
+        
+        return emoji.image ? YES : NO;
+    }
+    
+    return YES;
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"EmojiDetailSegue"])
+    if ([segue.identifier isEqualToString:detailsSegueIdentifier])
     {
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:(KSEmojiCollectionViewCell*)sender];
         KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];

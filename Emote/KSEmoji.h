@@ -13,7 +13,7 @@
 
 @property(nonatomic, strong) NSString *name;
 @property(nonatomic, strong) NSURL *URL;
-@property(nonatomic, strong) UIImage *imageData;
+@property(nonatomic, strong) UIImage *image;
 
 -(instancetype)initWithName:(NSString*)name URL:(NSURL*)URL;
 

@@ -8,9 +8,11 @@
 
 #import "KSEmojisCollectionViewController.h"
 #import "KSEmojiDataController.h"
+#import "KSEmojiImageDownloader.h"
 #import "KSEmoji.h"
+#import "KSEmojiCollectionViewCell.h"
 
-@interface KSEmojisCollectionViewController () <UICollectionViewDelegateFlowLayout>
+@interface KSEmojisCollectionViewController () <UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
 @property(nonatomic, strong) NSArray *emojis;
 @property(nonatomic, strong) NSMutableDictionary *emojiImageDownloadsInProgress;
@@ -22,7 +24,7 @@
 @implementation KSEmojisCollectionViewController
 
 static NSString * const reuseIdentifier = @"EmojiCell";
-static NSUInteger const imageWidth = 64;
+static NSUInteger const imageWidth = 20;
 
 #pragma mark - View controller life cycle methods
 
@@ -31,9 +33,7 @@ static NSUInteger const imageWidth = 64;
     [super viewDidLoad];
     
     _emojiImageDownloadsInProgress = [NSMutableDictionary new];
-    
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
+        
     CGFloat cellPaddingSpace = self.view.bounds.size.width * 0.5;
     CGFloat availableWidthSpace = (self.view.bounds.size.width - cellPaddingSpace);
     NSUInteger itemsPerRow = availableWidthSpace/imageWidth;
@@ -41,6 +41,18 @@ static NSUInteger const imageWidth = 64;
     _sectionInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
     
     [self fetchEmojiData];
+}
+
+- (void)dealloc
+{
+    [self terminateAllEmojiImageDownloads];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    
+    [self terminateAllEmojiImageDownloads];
 }
 
 #pragma mark - UICollectionViewDataSource methods
@@ -54,18 +66,29 @@ static NSUInteger const imageWidth = 64;
     return _emojis.count;
 }
 
+#pragma mark UICollectionViewDelegate methods
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    KSEmoji *emoji = _emojis[indexPath.row];
     
-    cell.backgroundColor = [UIColor blackColor];
+    if (emoji.image)
+    {
+        [cell updateCellWithEmoji:emoji];
+    }
+    else
+    {
+        [cell updateCellWithPlaceholder];
+        if (!self.collectionView.dragging && !self.collectionView.decelerating)
+        {
+            [cell showActivityIndicator];
+            [self beginEmojiImageDownloadForEmoji:emoji forIndexPath:indexPath];
+        }
+    }
     
     return cell;
 }
 
-#pragma mark UICollectionViewDelegate methods
-
 #pragma mark UICollectionViewDelegateFlowLayout methods
-
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(_imageSize, _imageSize);
@@ -82,7 +105,6 @@ static NSUInteger const imageWidth = 64;
 }
 
 #pragma mark - Emoji data methods
-
 -(void)fetchEmojiData
 {
     KSEmojiDataController *emojiDataController = [KSEmojiDataController new];
@@ -92,6 +114,71 @@ static NSUInteger const imageWidth = 64;
             [self.collectionView reloadData];
         });
     }];
+}
+
+#pragma mark - Emoji image methods
+-(void)beginEmojiImageDownloadForEmoji:(KSEmoji*)emoji forIndexPath:(NSIndexPath*)indexPath
+{
+    KSEmojiImageDownloader *emojiImageDownloader = _emojiImageDownloadsInProgress[indexPath];
+    
+    if (!emojiImageDownloader)
+    {
+        emojiImageDownloader = [KSEmojiImageDownloader new];
+        _emojiImageDownloadsInProgress[indexPath] = emojiImageDownloader;
+        [emojiImageDownloader startEmojiImageDownloadWithURL:emoji.URL WithCompletion:^(NSData *data, NSError *error) {
+            [_emojiImageDownloadsInProgress removeObjectForKey:indexPath];
+            if (data)
+            {
+                emoji.image = [UIImage imageWithData:data];
+                KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell hideActivityIndicator];
+                    [cell updateCellWithEmoji:emoji];
+                });
+            }
+        }];
+    }
+}
+
+- (void)loadImagesForOnscreenRows
+{
+    if (_emojis.count > 0)
+    {
+        NSArray *visibleEmojisIndexPath = [self.collectionView indexPathsForVisibleItems];
+        for (NSIndexPath *indexPath in visibleEmojisIndexPath)
+        {
+            KSEmoji *emoji = _emojis[indexPath.row];
+            
+            if (!emoji.image)
+            {
+                [self beginEmojiImageDownloadForEmoji:emoji forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+
+- (void)terminateAllEmojiImageDownloads
+{
+    NSArray *allEmojiImageDownloads = [_emojiImageDownloadsInProgress allValues];
+    [allEmojiImageDownloads makeObjectsPerformSelector:@selector(cancelEmojiImageDownload)];
+    [_emojiImageDownloadsInProgress removeAllObjects];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+    {
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
 }
 
 @end

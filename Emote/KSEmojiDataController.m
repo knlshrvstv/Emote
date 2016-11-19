@@ -60,7 +60,7 @@ static NSString * const fetchEmojisURL = @"https://api.github.com/emojis";
     {
         for (NSString *emojiName in emojisDictionary.allKeys)
         {
-            [emojisArray addObject:[[KSEmoji alloc] initWithName:emojiName URL:emojisDictionary[emojiName]]];
+            [emojisArray addObject:[[KSEmoji alloc] initWithName:emojiName URL:[NSURL URLWithString:emojisDictionary[emojiName]]]];
         }
     }
     

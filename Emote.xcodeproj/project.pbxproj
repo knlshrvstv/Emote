@@ -17,6 +17,7 @@
 		B657086A1DE0A47C00AFFD49 /* KSWebServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708691DE0A47C00AFFD49 /* KSWebServiceController.m */; };
 		B657086D1DE0A79A00AFFD49 /* KSEmojiDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B657086C1DE0A79A00AFFD49 /* KSEmojiDataController.m */; };
 		B65708701DE0B0C700AFFD49 /* KSEmojiImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = B657086F1DE0B0C700AFFD49 /* KSEmojiImageDownloader.m */; };
+		B65708741DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708731DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		B657086C1DE0A79A00AFFD49 /* KSEmojiDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojiDataController.m; sourceTree = "<group>"; };
 		B657086E1DE0B0C700AFFD49 /* KSEmojiImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSEmojiImageDownloader.h; sourceTree = "<group>"; };
 		B657086F1DE0B0C700AFFD49 /* KSEmojiImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojiImageDownloader.m; sourceTree = "<group>"; };
+		B65708721DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSEmojiCollectionViewCell.h; sourceTree = "<group>"; };
+		B65708731DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojiCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,7 @@
 		B65708461DE09F1300AFFD49 /* Emote */ = {
 			isa = PBXGroup;
 			children = (
+				B65708711DE0C4AC00AFFD49 /* Collection View Cell */,
 				B65708641DE0A39300AFFD49 /* Controller */,
 				B65708631DE0A1D700AFFD49 /* View */,
 				B65708621DE0A1CF00AFFD49 /* Model */,
@@ -131,6 +135,15 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		B65708711DE0C4AC00AFFD49 /* Collection View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B65708721DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.h */,
+				B65708731DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m */,
+			);
+			name = "Collection View Cell";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,6 +175,7 @@
 				TargetAttributes = {
 					B65708431DE09F1300AFFD49 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = CBHP6G9QDW;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -209,6 +223,7 @@
 				B657084C1DE09F1300AFFD49 /* AppDelegate.m in Sources */,
 				B65708671DE0A3A700AFFD49 /* KSEmoji.m in Sources */,
 				B65708491DE09F1300AFFD49 /* main.m in Sources */,
+				B65708741DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CBHP6G9QDW;
 				INFOPLIST_FILE = Emote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KS.Emote;
@@ -337,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CBHP6G9QDW;
 				INFOPLIST_FILE = Emote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KS.Emote;

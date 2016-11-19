@@ -92,17 +92,32 @@
                                     <action selector="closeButtonAction:" destination="Ign-Iu-qlw" eventType="touchUpInside" id="tm4-gQ-pIm"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="K1h-wy-9UG">
+                                <rect key="frame" x="16" y="78" width="343" height="121"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="121" id="9DR-oA-A7r"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Hlg-CU-ba8" firstAttribute="leading" secondItem="XwB-3E-GLf" secondAttribute="leadingMargin" id="FJd-l0-COT"/>
                             <constraint firstItem="Hlg-CU-ba8" firstAttribute="top" secondItem="GFo-cb-0WS" secondAttribute="bottom" id="SPx-Jr-gFp"/>
+                            <constraint firstItem="K1h-wy-9UG" firstAttribute="top" secondItem="Hlg-CU-ba8" secondAttribute="bottom" constant="8" id="UpY-Od-jCi"/>
+                            <constraint firstItem="K1h-wy-9UG" firstAttribute="trailing" secondItem="XwB-3E-GLf" secondAttribute="trailingMargin" id="pz8-EH-GAT"/>
+                            <constraint firstItem="K1h-wy-9UG" firstAttribute="leading" secondItem="XwB-3E-GLf" secondAttribute="leadingMargin" id="s7i-1d-HTl"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="6EW-sb-S37" appends="YES" id="xea-De-Jok"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="emojiLabel" destination="K1h-wy-9UG" id="hoc-GP-G1h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRI-FK-5Ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="down" id="6EW-sb-S37">

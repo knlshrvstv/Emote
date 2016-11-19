@@ -17,21 +17,18 @@
 
 @implementation KSEmojiDetailViewController
 
+static NSString * const emojiPositionAnimationKey = @"emojiImagePositionBasicAnimation";
+static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation";
+
 #pragma mark - View controller life cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self setupEmojiImage];
-    [self setupEmojiImageAnimationWhilePresenting:YES];
+    [self setupEmojiLabel];
+    [self setupEmojiImagePositionAnimationWhilePresenting:YES];
     [self setupEmojiImageScaleAnimationWhilePresenting:YES];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    self.emojiLabel.text = _emoji.name;
 }
 
 #pragma mark - View setup
@@ -42,7 +39,12 @@
     [self.view addSubview:_emojiImageView];
 }
 
--(void)setupEmojiImageAnimationWhilePresenting:(BOOL)presenting
+-(void)setupEmojiLabel
+{
+    self.emojiLabel.text = _emoji.name;
+}
+
+-(void)setupEmojiImagePositionAnimationWhilePresenting:(BOOL)presenting
 {
     CABasicAnimation *emojiImageBasicAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
     
@@ -66,7 +68,7 @@
     emojiImageBasicAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     emojiImageBasicAnimation.duration = 0.8;
     emojiImageBasicAnimation.removedOnCompletion = NO;
-    [emojiImageBasicAnimation setValue:@(presenting) forKey:@"emojiImageBasicAnimation"];
+    [emojiImageBasicAnimation setValue:@(presenting) forKey:emojiPositionAnimationKey];
     [_emojiImageView.layer addAnimation:emojiImageBasicAnimation forKey:nil];
     
     _emojiImageView.layer.position = toValue;
@@ -97,7 +99,7 @@
     emojiImageBasicAnimation.fillMode = kCAFillModeForwards;
     emojiImageBasicAnimation.removedOnCompletion = NO;
     emojiImageBasicAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    [emojiImageBasicAnimation setValue:@(presenting) forKey:@"setupEmojiImageScaleAnimation"];
+    [emojiImageBasicAnimation setValue:@(presenting) forKey:emojiScaleAnimationKey];
     
     [_emojiImageView.layer addAnimation:emojiImageBasicAnimation forKey:nil];
     _emojiImageView.contentScaleFactor = toValue;
@@ -106,14 +108,14 @@
 #pragma mark - IBAction
 - (IBAction)closeButtonAction:(id)sender {
     
-    [self setupEmojiImageAnimationWhilePresenting:NO];
+    [self setupEmojiImagePositionAnimationWhilePresenting:NO];
     [self setupEmojiImageScaleAnimationWhilePresenting:NO];
 }
 
 #pragma mark - CAAnimationDelegate
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    if([[anim valueForKey:@"emojiImageBasicAnimation"] isEqual:@(NO)])
+    if([[anim valueForKey:emojiPositionAnimationKey] isEqual:@(NO)])
     {
         [self dismissViewControllerAnimated:YES completion:nil];
     }

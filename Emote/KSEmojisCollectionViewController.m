@@ -28,10 +28,8 @@ static NSString * const reuseIdentifier = @"EmojiCell";
 static NSUInteger const imageWidth = 25;
 
 #pragma mark - View controller life cycle
-
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
     
     _emojiImageDownloadsInProgress = [NSMutableDictionary new];

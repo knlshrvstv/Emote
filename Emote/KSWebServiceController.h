@@ -10,6 +10,6 @@
 
 @interface KSWebServiceController : NSObject
 
--(void)httpGetFromURL:(NSURL*)URL completion:(void(^)(NSData *data, NSError *error))completion;
+-(NSURLSessionDataTask*)httpGetFromURL:(NSURL*)URL completion:(void(^)(NSData *data, NSError *error))completion;
 
 @end

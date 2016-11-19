@@ -10,15 +10,17 @@
 
 @implementation KSWebServiceController
 
--(void)httpGetFromURL:(NSURL*)URL completion:(void(^)(NSData *data, NSError *error))completion
+-(NSURLSessionDataTask*)httpGetFromURL:(NSURL*)URL completion:(void(^)(NSData *data, NSError *error))completion
 {
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:URL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
     NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        completion(data, error);
+        if (completion) completion(data, error);
     }];
     
     [dataTask resume];
+    
+    return dataTask;
 }
 
 @end

@@ -8,13 +8,6 @@
 
 #import "KSEmoji.h"
 
-@interface KSEmoji()
-
-@property(nonatomic, strong) NSString *name;
-@property(nonatomic, strong) NSURL *URL;
-
-@end
-
 @implementation KSEmoji
 
 -(instancetype)initWithName:(NSString*)name URL:(NSURL*)URL

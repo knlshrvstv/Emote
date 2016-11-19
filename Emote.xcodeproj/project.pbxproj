@@ -16,6 +16,7 @@
 		B65708671DE0A3A700AFFD49 /* KSEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708661DE0A3A700AFFD49 /* KSEmoji.m */; };
 		B657086A1DE0A47C00AFFD49 /* KSWebServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708691DE0A47C00AFFD49 /* KSWebServiceController.m */; };
 		B657086D1DE0A79A00AFFD49 /* KSEmojiDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B657086C1DE0A79A00AFFD49 /* KSEmojiDataController.m */; };
+		B65708701DE0B0C700AFFD49 /* KSEmojiImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = B657086F1DE0B0C700AFFD49 /* KSEmojiImageDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		B65708691DE0A47C00AFFD49 /* KSWebServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSWebServiceController.m; sourceTree = "<group>"; };
 		B657086B1DE0A79A00AFFD49 /* KSEmojiDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSEmojiDataController.h; sourceTree = "<group>"; };
 		B657086C1DE0A79A00AFFD49 /* KSEmojiDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojiDataController.m; sourceTree = "<group>"; };
+		B657086E1DE0B0C700AFFD49 /* KSEmojiImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSEmojiImageDownloader.h; sourceTree = "<group>"; };
+		B657086F1DE0B0C700AFFD49 /* KSEmojiImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojiImageDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				B65708691DE0A47C00AFFD49 /* KSWebServiceController.m */,
 				B657086B1DE0A79A00AFFD49 /* KSEmojiDataController.h */,
 				B657086C1DE0A79A00AFFD49 /* KSEmojiDataController.m */,
+				B657086E1DE0B0C700AFFD49 /* KSEmojiImageDownloader.h */,
+				B657086F1DE0B0C700AFFD49 /* KSEmojiImageDownloader.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B65708701DE0B0C700AFFD49 /* KSEmojiImageDownloader.m in Sources */,
 				B657086D1DE0A79A00AFFD49 /* KSEmojiDataController.m in Sources */,
 				B65708601DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.m in Sources */,
 				B657086A1DE0A47C00AFFD49 /* KSWebServiceController.m in Sources */,

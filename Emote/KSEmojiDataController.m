@@ -18,14 +18,13 @@ static NSString * const fetchEmojisURL = @"https://api.github.com/emojis";
 {
     KSWebServiceController *webServiceController = [[KSWebServiceController alloc] init];
     [webServiceController httpGetFromURL:[NSURL URLWithString:fetchEmojisURL] completion:^(NSData *data, NSError *error) {
-        
         if (data)
         {
             NSArray *emojis = [self convertEmojiDataToArray:data];
             
             if (emojis)
             {
-                completion(emojis, nil);
+                if (completion) completion(emojis, nil);
             }
             else
             {
@@ -35,12 +34,12 @@ static NSString * const fetchEmojisURL = @"https://api.github.com/emojis";
                 error = [NSError errorWithDomain:@"KSEmoteJSONDataErrorDomain"
                                                      code:101
                                                  userInfo:userInfo];
-                completion(nil, nil);
+                if (completion) completion(nil, nil);
             }
         }
         else if (error)
         {
-            completion(nil, error);
+            if (completion) completion(nil, error);
         }
     }];
 }

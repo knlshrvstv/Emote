@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface KSEmoji : NSObject
+
+@property(nonatomic, strong) NSString *name;
+@property(nonatomic, strong) NSURL *URL;
+@property(nonatomic, strong) UIImage *imageData;
 
 -(instancetype)initWithName:(NSString*)name URL:(NSURL*)URL;
 

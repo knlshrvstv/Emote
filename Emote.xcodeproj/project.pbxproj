@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		B65708491DE09F1300AFFD49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708481DE09F1300AFFD49 /* main.m */; };
 		B657084C1DE09F1300AFFD49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B657084B1DE09F1300AFFD49 /* AppDelegate.m */; };
-		B657084F1DE09F1300AFFD49 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B657084E1DE09F1300AFFD49 /* ViewController.m */; };
 		B65708521DE09F1300AFFD49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B65708501DE09F1300AFFD49 /* Main.storyboard */; };
 		B65708541DE09F1300AFFD49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B65708531DE09F1300AFFD49 /* Assets.xcassets */; };
 		B65708571DE09F1300AFFD49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B65708551DE09F1300AFFD49 /* LaunchScreen.storyboard */; };
+		B65708601DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B657085F1DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.m */; };
+		B65708671DE0A3A700AFFD49 /* KSEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708661DE0A3A700AFFD49 /* KSEmoji.m */; };
+		B657086A1DE0A47C00AFFD49 /* KSWebServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708691DE0A47C00AFFD49 /* KSWebServiceController.m */; };
+		B657086D1DE0A79A00AFFD49 /* KSEmojiDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B657086C1DE0A79A00AFFD49 /* KSEmojiDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +23,18 @@
 		B65708481DE09F1300AFFD49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B657084A1DE09F1300AFFD49 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B657084B1DE09F1300AFFD49 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B657084D1DE09F1300AFFD49 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B657084E1DE09F1300AFFD49 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B65708511DE09F1300AFFD49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B65708531DE09F1300AFFD49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B65708561DE09F1300AFFD49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B65708581DE09F1300AFFD49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B657085E1DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSEmojisCollectionViewController.h; sourceTree = "<group>"; };
+		B657085F1DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojisCollectionViewController.m; sourceTree = "<group>"; };
+		B65708651DE0A3A700AFFD49 /* KSEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSEmoji.h; sourceTree = "<group>"; };
+		B65708661DE0A3A700AFFD49 /* KSEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmoji.m; sourceTree = "<group>"; };
+		B65708681DE0A47C00AFFD49 /* KSWebServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSWebServiceController.h; sourceTree = "<group>"; };
+		B65708691DE0A47C00AFFD49 /* KSWebServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSWebServiceController.m; sourceTree = "<group>"; };
+		B657086B1DE0A79A00AFFD49 /* KSEmojiDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSEmojiDataController.h; sourceTree = "<group>"; };
+		B657086C1DE0A79A00AFFD49 /* KSEmojiDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSEmojiDataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +67,10 @@
 		B65708461DE09F1300AFFD49 /* Emote */ = {
 			isa = PBXGroup;
 			children = (
-				B657084A1DE09F1300AFFD49 /* AppDelegate.h */,
-				B657084B1DE09F1300AFFD49 /* AppDelegate.m */,
-				B657084D1DE09F1300AFFD49 /* ViewController.h */,
-				B657084E1DE09F1300AFFD49 /* ViewController.m */,
-				B65708501DE09F1300AFFD49 /* Main.storyboard */,
-				B65708531DE09F1300AFFD49 /* Assets.xcassets */,
-				B65708551DE09F1300AFFD49 /* LaunchScreen.storyboard */,
-				B65708581DE09F1300AFFD49 /* Info.plist */,
+				B65708641DE0A39300AFFD49 /* Controller */,
+				B65708631DE0A1D700AFFD49 /* View */,
+				B65708621DE0A1CF00AFFD49 /* Model */,
+				B65708611DE0A1C200AFFD49 /* View Contoller */,
 				B65708471DE09F1300AFFD49 /* Supporting Files */,
 			);
 			path = Emote;
@@ -74,9 +79,51 @@
 		B65708471DE09F1300AFFD49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B657084A1DE09F1300AFFD49 /* AppDelegate.h */,
+				B657084B1DE09F1300AFFD49 /* AppDelegate.m */,
+				B65708581DE09F1300AFFD49 /* Info.plist */,
 				B65708481DE09F1300AFFD49 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B65708611DE0A1C200AFFD49 /* View Contoller */ = {
+			isa = PBXGroup;
+			children = (
+				B657085E1DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.h */,
+				B657085F1DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.m */,
+			);
+			name = "View Contoller";
+			sourceTree = "<group>";
+		};
+		B65708621DE0A1CF00AFFD49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B65708651DE0A3A700AFFD49 /* KSEmoji.h */,
+				B65708661DE0A3A700AFFD49 /* KSEmoji.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B65708631DE0A1D700AFFD49 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B65708501DE09F1300AFFD49 /* Main.storyboard */,
+				B65708531DE09F1300AFFD49 /* Assets.xcassets */,
+				B65708551DE09F1300AFFD49 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B65708641DE0A39300AFFD49 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B65708681DE0A47C00AFFD49 /* KSWebServiceController.h */,
+				B65708691DE0A47C00AFFD49 /* KSWebServiceController.m */,
+				B657086B1DE0A79A00AFFD49 /* KSEmojiDataController.h */,
+				B657086C1DE0A79A00AFFD49 /* KSEmojiDataController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,8 +197,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B657084F1DE09F1300AFFD49 /* ViewController.m in Sources */,
+				B657086D1DE0A79A00AFFD49 /* KSEmojiDataController.m in Sources */,
+				B65708601DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.m in Sources */,
+				B657086A1DE0A47C00AFFD49 /* KSWebServiceController.m in Sources */,
 				B657084C1DE09F1300AFFD49 /* AppDelegate.m in Sources */,
+				B65708671DE0A3A700AFFD49 /* KSEmoji.m in Sources */,
 				B65708491DE09F1300AFFD49 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +357,7 @@
 				B657085D1DE09F1300AFFD49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

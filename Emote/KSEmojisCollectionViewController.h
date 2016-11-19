@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  KSEmojisCollectionViewController.h
 //  Emote
 //
 //  Created by Kunal Shrivastava on 11/19/16.
@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface KSEmojisCollectionViewController : UICollectionViewController
 
 @end
-

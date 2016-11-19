@@ -67,7 +67,7 @@ static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation
     emojiImageBasicAnimation.fromValue = [NSValue valueWithCGPoint:fromValue];
     emojiImageBasicAnimation.toValue = [NSValue valueWithCGPoint:toValue];
     emojiImageBasicAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    emojiImageBasicAnimation.duration = 0.8;
+    emojiImageBasicAnimation.duration = 0.5;
     emojiImageBasicAnimation.removedOnCompletion = NO;
     [emojiImageBasicAnimation setValue:@(presenting) forKey:emojiPositionAnimationKey];
     [_emojiImageView.layer addAnimation:emojiImageBasicAnimation forKey:nil];
@@ -96,7 +96,7 @@ static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation
     emojiImageBasicAnimation.delegate = self;
     emojiImageBasicAnimation.fromValue = @(fromValue);
     emojiImageBasicAnimation.toValue = @(toValue);
-    emojiImageBasicAnimation.duration = 0.8;
+    emojiImageBasicAnimation.duration = 0.5;
     emojiImageBasicAnimation.fillMode = kCAFillModeForwards;
     emojiImageBasicAnimation.removedOnCompletion = NO;
     emojiImageBasicAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -125,7 +125,7 @@ static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation
     CABasicAnimation *emojiImageBasicAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     emojiImageBasicAnimation.fromValue = @(fromValue);
     emojiImageBasicAnimation.toValue = @(toValue);
-    emojiImageBasicAnimation.duration = 0.8;
+    emojiImageBasicAnimation.duration = 0.5;
     emojiImageBasicAnimation.fillMode = kCAFillModeForwards;
     emojiImageBasicAnimation.removedOnCompletion = NO;
     emojiImageBasicAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -141,6 +141,8 @@ static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation
     [self setupEmojiImageScaleAnimationWhilePresenting:NO];
     [self setupEmojiLabelOpacityAnimationWhilePresenting:NO];
 }
+
+
 
 #pragma mark - CAAnimationDelegate
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag

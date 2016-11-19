@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Emojis Collection View Controller-->
+        <!--Emote-->
         <scene sceneID="UDP-Je-59I">
             <objects>
                 <collectionViewController id="bXG-ml-HcY" customClass="KSEmojisCollectionViewController" sceneMemberID="viewController">
@@ -60,9 +60,7 @@
                             <outlet property="delegate" destination="bXG-ml-HcY" id="Bee-Wm-5Oe"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="Qst-6x-lNa">
-                        <nil key="title"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Emote" id="Qst-6x-lNa"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hX-FJ-2eE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,7 +120,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRI-FK-5Ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="down" id="6EW-sb-S37">
                     <connections>
-                        <action selector="swipeGestureAction:" destination="Ign-Iu-qlw" id="Eec-sK-HCK"/>
+                        <action selector="closeButtonAction:" destination="Ign-Iu-qlw" id="K7A-QN-lTt"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

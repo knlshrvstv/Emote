@@ -167,7 +167,8 @@ static NSUInteger const imageWidth = 25;
 {
     NSArray *allEmojiImageDownloads = [_emojiImageDownloadsInProgress allValues];
     [allEmojiImageDownloads makeObjectsPerformSelector:@selector(cancelEmojiImageDownload)];
-    [_emojiImageDownloadsInProgress removeAllObjects];
+    NSArray *allVisibleEmojiCells = [self.collectionView visibleCells];
+    [allVisibleEmojiCells makeObjectsPerformSelector:@selector(hideActivityIndicator)];
 }
 
 #pragma mark - UIScrollViewDelegate

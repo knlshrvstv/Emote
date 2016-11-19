@@ -34,6 +34,7 @@ static NSString * const fetchEmojisURL = @"https://api.github.com/emojis";
                 error = [NSError errorWithDomain:@"KSEmoteJSONDataErrorDomain"
                                                      code:101
                                                  userInfo:userInfo];
+                
                 if (completion) completion(nil, nil);
             }
         }

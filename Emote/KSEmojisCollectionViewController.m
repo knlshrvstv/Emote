@@ -8,97 +8,90 @@
 
 #import "KSEmojisCollectionViewController.h"
 #import "KSEmojiDataController.h"
+#import "KSEmoji.h"
 
-@interface KSEmojisCollectionViewController ()
+@interface KSEmojisCollectionViewController () <UICollectionViewDelegateFlowLayout>
+
+@property(nonatomic, strong) NSArray *emojis;
+@property(nonatomic, strong) NSMutableDictionary *emojiImageDownloadsInProgress;
+@property(nonatomic, assign) NSUInteger imageSize;
+@property(nonatomic, assign) UIEdgeInsets sectionInsets;
 
 @end
 
 @implementation KSEmojisCollectionViewController
 
 static NSString * const reuseIdentifier = @"EmojiCell";
+static NSUInteger const imageWidth = 64;
+
+#pragma mark - View controller life cycle methods
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
+    _emojiImageDownloadsInProgress = [NSMutableDictionary new];
     
-    // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // Do any additional setup after loading the view.
+    CGFloat cellPaddingSpace = self.view.bounds.size.width * 0.5;
+    CGFloat availableWidthSpace = (self.view.bounds.size.width - cellPaddingSpace);
+    NSUInteger itemsPerRow = availableWidthSpace/imageWidth;
+    _imageSize = availableWidthSpace/itemsPerRow;
+    _sectionInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
     
-    KSEmojiDataController *emojiDataController = [KSEmojiDataController new];
-    [emojiDataController fetchEmojisFromAPIWithCompletion:^(NSArray *emojis, NSError *error) {
-        
-    }];
+    [self fetchEmojiData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - UICollectionViewDataSource methods
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 0;
+    return _emojis.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
+    cell.backgroundColor = [UIColor blackColor];
     
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark UICollectionViewDelegate methods
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
+#pragma mark UICollectionViewDelegateFlowLayout methods
 
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(_imageSize, _imageSize);
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return _sectionInsets;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return _sectionInsets.left;
 }
-*/
+
+#pragma mark - Emoji data methods
+
+-(void)fetchEmojiData
+{
+    KSEmojiDataController *emojiDataController = [KSEmojiDataController new];
+    [emojiDataController fetchEmojisFromAPIWithCompletion:^(NSArray *emojis, NSError *error) {
+        _emojis = emojis;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }];
+}
 
 @end

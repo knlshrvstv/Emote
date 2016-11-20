@@ -102,6 +102,7 @@ static NSUInteger const imageWidth = 25;
         else
         {
             [cell updateCellWithPlaceholder];
+            [cell showActivityIndicator];
             if (!self.collectionView.dragging && !self.collectionView.decelerating)
             {
                 [self beginEmojiImageDownloadForEmoji:emoji forIndexPath:indexPath];
@@ -126,7 +127,7 @@ static NSUInteger const imageWidth = 25;
     }
     else
     {
-        return CGSizeMake(self.view.bounds.size.width, imageWidth);
+        return CGSizeMake(self.view.bounds.size.width * 0.6, imageWidth);
     }
 }
 
@@ -180,10 +181,9 @@ static NSUInteger const imageWidth = 25;
     {
         emojiImageDownloader = [KSEmojiImageDownloader new];
         _emojiImageDownloadsInProgress[indexPath] = emojiImageDownloader;
-        KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-        [cell showActivityIndicator];
         [emojiImageDownloader startEmojiImageDownloadWithURL:emoji.URL WithCompletion:^(NSData *data, NSError *error) {
             [_emojiImageDownloadsInProgress removeObjectForKey:indexPath];
+            KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
             if (data)
             {
                 emoji.image = [UIImage imageWithData:data];
@@ -196,7 +196,6 @@ static NSUInteger const imageWidth = 25;
             else if (error)
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [KSUtility showErrorWithMessage:error.localizedDescription onViewController:self];
                     [cell hideActivityIndicator];
                     [cell updateCellWithPlaceholder];
                 });

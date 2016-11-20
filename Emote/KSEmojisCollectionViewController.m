@@ -12,6 +12,7 @@
 #import "KSEmoji.h"
 #import "KSEmojiCollectionViewCell.h"
 #import "KSEmojiDetailViewController.h"
+#import "KSUtility.h"
 
 @interface KSEmojisCollectionViewController () <UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
@@ -19,6 +20,7 @@
 @property(nonatomic, strong) NSMutableDictionary *emojiImageDownloadsInProgress;
 @property(nonatomic, assign) NSUInteger imageSize;
 @property(nonatomic, assign) UIEdgeInsets sectionInsets;
+@property(nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -32,7 +34,6 @@ static NSUInteger const imageWidth = 25;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     _emojiImageDownloadsInProgress = [NSMutableDictionary new];
         
     CGFloat cellPaddingSpace = self.view.bounds.size.width * 0.5;
@@ -57,13 +58,14 @@ static NSUInteger const imageWidth = 25;
     [self terminateAllEmojiImageDownloads];
 }
 
-#pragma mark - View setup
+#pragma mark - View
 -(void)setupRefreshControl
 {
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.tintColor = [UIColor grayColor];
-    [refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
-    self.collectionView.refreshControl = refreshControl;
+    _refreshControl = [[UIRefreshControl alloc] init];
+    _refreshControl.tintColor = [UIColor grayColor];
+    [_refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    self.collectionView.alwaysBounceVertical = YES;
+    [self.collectionView addSubview:_refreshControl];
 }
 
 -(void)pullToRefresh
@@ -125,15 +127,31 @@ static NSUInteger const imageWidth = 25;
 #pragma mark - Emoji data
 -(void)fetchEmojiData
 {
-    [self.collectionView.refreshControl beginRefreshing];
-    KSEmojiDataController *emojiDataController = [KSEmojiDataController new];
-    [emojiDataController fetchEmojisFromAPIWithCompletion:^(NSArray *emojis, NSError *error) {
-        _emojis = emojis;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView reloadData];
-            [self.collectionView.refreshControl endRefreshing];
-        });
-    }];
+    if ([KSUtility isInternetAvailable])
+    {
+        [_refreshControl layoutIfNeeded]; //https://openradar.appspot.com/27468436
+        [_refreshControl beginRefreshing];
+        KSEmojiDataController *emojiDataController = [KSEmojiDataController new];
+        [emojiDataController fetchEmojisFromAPIWithCompletion:^(NSArray *emojis, NSError *error) {
+            if (emojis)
+            {
+                _emojis = emojis;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.collectionView reloadData];
+                    [_refreshControl endRefreshing];
+                });
+            }
+            else if (error)
+            {
+                [KSUtility showErrorWithMessage:error.localizedDescription onViewController:self];
+            }
+        }];
+    }
+    else
+    {
+        [KSUtility showErrorWithMessage:@"No internet available" onViewController:self];
+    }
+    
 }
 
 #pragma mark - Emoji image
@@ -157,9 +175,10 @@ static NSUInteger const imageWidth = 25;
                     [cell updateCellWithEmoji:emoji];
                 });
             }
-            else
+            else if (error)
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [KSUtility showErrorWithMessage:error.localizedDescription onViewController:self];
                     [cell hideActivityIndicator];
                     [cell updateCellWithPlaceholder];
                 });

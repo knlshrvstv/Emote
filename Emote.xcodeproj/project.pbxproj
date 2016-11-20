@@ -22,6 +22,8 @@
 		B657087A1DE1170300AFFD49 /* KSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708791DE1170300AFFD49 /* KSRootViewController.m */; };
 		B657087D1DE1176800AFFD49 /* KSSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B657087C1DE1176800AFFD49 /* KSSplashViewController.m */; };
 		B65708801DE11A7600AFFD49 /* KSFallingEmojisView.m in Sources */ = {isa = PBXBuildFile; fileRef = B657087F1DE11A7600AFFD49 /* KSFallingEmojisView.m */; };
+		B69552DA1DE1336900A08577 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B69552D91DE1336900A08577 /* Reachability.m */; };
+		B69552DD1DE1347E00A08577 /* KSUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = B69552DC1DE1347E00A08577 /* KSUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,10 @@
 		B657087C1DE1176800AFFD49 /* KSSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSSplashViewController.m; sourceTree = "<group>"; };
 		B657087E1DE11A7600AFFD49 /* KSFallingEmojisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSFallingEmojisView.h; sourceTree = "<group>"; };
 		B657087F1DE11A7600AFFD49 /* KSFallingEmojisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSFallingEmojisView.m; sourceTree = "<group>"; };
+		B69552D81DE1336900A08577 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B69552D91DE1336900A08577 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		B69552DB1DE1347E00A08577 /* KSUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSUtility.h; sourceTree = "<group>"; };
+		B69552DC1DE1347E00A08577 /* KSUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,9 @@
 		B65708471DE09F1300AFFD49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B69552D71DE1336000A08577 /* Reachability */,
+				B69552DB1DE1347E00A08577 /* KSUtility.h */,
+				B69552DC1DE1347E00A08577 /* KSUtility.m */,
 				B657084A1DE09F1300AFFD49 /* KSAppDelegate.h */,
 				B657084B1DE09F1300AFFD49 /* KSAppDelegate.m */,
 				B65708581DE09F1300AFFD49 /* Info.plist */,
@@ -162,6 +171,15 @@
 				B65708731DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m */,
 			);
 			name = "Collection View Cell";
+			sourceTree = "<group>";
+		};
+		B69552D71DE1336000A08577 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				B69552D81DE1336900A08577 /* Reachability.h */,
+				B69552D91DE1336900A08577 /* Reachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B69552DA1DE1336900A08577 /* Reachability.m in Sources */,
 				B65708701DE0B0C700AFFD49 /* KSEmojiImageDownloader.m in Sources */,
 				B657086D1DE0A79A00AFFD49 /* KSEmojiDataController.m in Sources */,
 				B65708601DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.m in Sources */,
@@ -248,6 +267,7 @@
 				B65708801DE11A7600AFFD49 /* KSFallingEmojisView.m in Sources */,
 				B65708771DE0D08300AFFD49 /* KSEmojiDetailViewController.m in Sources */,
 				B65708741DE0C4C200AFFD49 /* KSEmojiCollectionViewCell.m in Sources */,
+				B69552DD1DE1347E00A08577 /* KSUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

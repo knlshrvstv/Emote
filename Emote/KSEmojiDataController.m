@@ -13,6 +13,8 @@
 @implementation KSEmojiDataController
 
 static NSString * const fetchEmojisURL = @"https://api.github.com/emojis";
+static NSString * const KSEmoteJSONDataErrorDomain = @"KSEmoteJSONDataErrorDomain";
+static NSString * const KSEmoteJSONDataErrorDomainDescription = @"Data provided by the web service was invalid.";
 
 -(void)fetchEmojisFromAPIWithCompletion:(void (^)(NSArray *emojis, NSError *error))completion
 {
@@ -29,9 +31,9 @@ static NSString * const fetchEmojisURL = @"https://api.github.com/emojis";
             else
             {
                 NSDictionary *userInfo = @{
-                                           NSLocalizedDescriptionKey: NSLocalizedString(@"Data provided by the web service was invalid.", nil)
+                                           NSLocalizedDescriptionKey: NSLocalizedString(KSEmoteJSONDataErrorDomainDescription, nil)
                                            };
-                error = [NSError errorWithDomain:@"KSEmoteJSONDataErrorDomain"
+                error = [NSError errorWithDomain:KSEmoteJSONDataErrorDomain
                                                      code:101
                                                  userInfo:userInfo];
                 

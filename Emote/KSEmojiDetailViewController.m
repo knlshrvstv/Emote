@@ -143,7 +143,6 @@ static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation
 #pragma mark - IBAction
 - (IBAction)closeButtonAction:(id)sender
 {
-    
     [self setupEmojiImagePositionAnimationWhilePresenting:NO];
     [self setupEmojiImageScaleAnimationWhilePresenting:NO];
     [self setupEmojiLabelOpacityAnimationWhilePresenting:NO];

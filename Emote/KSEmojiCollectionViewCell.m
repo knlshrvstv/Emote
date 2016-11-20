@@ -17,7 +17,6 @@
 
 @implementation KSEmojiCollectionViewCell
 
-
 #pragma mark - Collection view cell setup
 -(void)updateCellWithEmoji:(KSEmoji*)emoji
 {
@@ -40,7 +39,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [_activityIndicator startAnimating];
     });
-    
 }
 
 -(void)hideActivityIndicator

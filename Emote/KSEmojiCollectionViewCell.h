@@ -12,9 +12,7 @@
 @interface KSEmojiCollectionViewCell : UICollectionViewCell
 
 -(void)updateCellWithEmoji:(KSEmoji*)emoji;
-
 -(void)updateCellWithPlaceholder;
-
 -(void)showActivityIndicator;
 -(void)hideActivityIndicator;
 

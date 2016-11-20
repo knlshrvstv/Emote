@@ -33,7 +33,7 @@ static NSString * const internetUnavailableErrorMessage = @"No internet availabl
 static NSUInteger const imageWidth = 35;
 
 #pragma mark - View controller life cycle
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
     [super viewDidLoad];
     _emojiImageDownloadsInProgress = [NSMutableDictionary new];
@@ -48,12 +48,12 @@ static NSUInteger const imageWidth = 35;
     [self fetchEmojiData];
 }
 
-- (void)dealloc
+-(void)dealloc
 {
     [self terminateAllEmojiImageDownloads];
 }
 
-- (void)didReceiveMemoryWarning
+-(void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     
@@ -77,19 +77,19 @@ static NSUInteger const imageWidth = 35;
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
 }
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return _emojis.count ? _emojis.count : 1;
 }
 
 #pragma mark UICollectionViewDelegate
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (_emojis && _emojis.count > 0)
     {
@@ -170,7 +170,6 @@ static NSUInteger const imageWidth = 35;
     {
         [KSUtility showErrorWithMessage:internetUnavailableErrorMessage onViewController:self];
     }
-    
 }
 
 #pragma mark - Emoji image

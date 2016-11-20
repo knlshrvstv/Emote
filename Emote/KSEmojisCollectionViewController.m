@@ -29,6 +29,7 @@
 static NSString * const emojiCellReuseIdentifier = @"EmojiCell";
 static NSString * const defaultCellReuseIdentifier = @"DefaultCell";
 static NSString * const detailsSegueIdentifier = @"EmojiDetailSegue";
+static NSString * const internetUnavailableErrorMessage = @"No internet available. Please check your internet connection.";
 static NSUInteger const imageWidth = 35;
 
 #pragma mark - View controller life cycle
@@ -167,7 +168,7 @@ static NSUInteger const imageWidth = 35;
     }
     else
     {
-        [KSUtility showErrorWithMessage:@"No internet available" onViewController:self];
+        [KSUtility showErrorWithMessage:internetUnavailableErrorMessage onViewController:self];
     }
     
 }

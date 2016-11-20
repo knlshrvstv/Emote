@@ -41,6 +41,7 @@ static NSUInteger const imageWidth = 25;
     _imageSize = availableWidthSpace/itemsPerRow;
     _sectionInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
     
+    [self setupRefreshControl];
     [self fetchEmojiData];
 }
 
@@ -56,14 +57,30 @@ static NSUInteger const imageWidth = 25;
     [self terminateAllEmojiImageDownloads];
 }
 
+#pragma mark - View setup
+-(void)setupRefreshControl
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = [UIColor grayColor];
+    [refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    self.collectionView.refreshControl = refreshControl;
+}
+
+-(void)pullToRefresh
+{
+    [self fetchEmojiData];
+}
+
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return 1;
 }
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return _emojis.count;
 }
 
@@ -89,10 +106,6 @@ static NSUInteger const imageWidth = 25;
     return cell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-}
-
 #pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -112,11 +125,13 @@ static NSUInteger const imageWidth = 25;
 #pragma mark - Emoji data
 -(void)fetchEmojiData
 {
+    [self.collectionView.refreshControl beginRefreshing];
     KSEmojiDataController *emojiDataController = [KSEmojiDataController new];
     [emojiDataController fetchEmojisFromAPIWithCompletion:^(NSArray *emojis, NSError *error) {
         _emojis = emojis;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.collectionView reloadData];
+            [self.collectionView.refreshControl endRefreshing];
         });
     }];
 }

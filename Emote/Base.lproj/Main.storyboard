@@ -109,7 +109,10 @@
                                     <constraint firstAttribute="width" constant="50" id="UxA-Tq-pbB"/>
                                     <constraint firstAttribute="height" constant="50" id="di2-0S-SuF"/>
                                 </constraints>
-                                <state key="normal" image="closebutton"/>
+                                <color key="tintColor" red="1" green="0.51764705879999995" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="closebutton">
+                                    <color key="titleColor" red="0.19215686269999999" green="0.23529411759999999" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="closeButtonAction:" destination="Ign-Iu-qlw" eventType="touchUpInside" id="tm4-gQ-pIm"/>
                                 </connections>
@@ -119,8 +122,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="121" id="9DR-oA-A7r"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="22"/>
+                                <color key="textColor" red="0.19215686269999999" green="0.23529411759999999" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

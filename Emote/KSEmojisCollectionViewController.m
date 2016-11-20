@@ -29,7 +29,7 @@
 static NSString * const emojiCellReuseIdentifier = @"EmojiCell";
 static NSString * const defaultCellReuseIdentifier = @"DefaultCell";
 static NSString * const detailsSegueIdentifier = @"EmojiDetailSegue";
-static NSUInteger const imageWidth = 30;
+static NSUInteger const imageWidth = 35;
 
 #pragma mark - View controller life cycle
 - (void)viewDidLoad

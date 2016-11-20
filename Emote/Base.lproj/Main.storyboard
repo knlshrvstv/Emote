@@ -54,6 +54,30 @@
                                     <segue destination="Ign-Iu-qlw" kind="presentation" identifier="EmojiDetailSegue" id="lRj-SV-8hl"/>
                                 </connections>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DefaultCell" id="TeQ-lt-NrZ">
+                                <rect key="frame" x="60" y="0.0" width="310" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="310" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data available" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SWv-vg-pi9">
+                                            <rect key="frame" x="8" y="8" width="294" height="34"/>
+                                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="1" green="0.51764705879999995" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="SWv-vg-pi9" firstAttribute="trailing" secondItem="TeQ-lt-NrZ" secondAttribute="trailingMargin" id="063-hy-b0v"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="SWv-vg-pi9" secondAttribute="bottom" id="V9h-Ae-bqF"/>
+                                    <constraint firstItem="SWv-vg-pi9" firstAttribute="top" secondItem="TeQ-lt-NrZ" secondAttribute="topMargin" id="Vof-LZ-GWY"/>
+                                    <constraint firstItem="SWv-vg-pi9" firstAttribute="leading" secondItem="TeQ-lt-NrZ" secondAttribute="leadingMargin" id="xdd-di-fkd"/>
+                                </constraints>
+                                <size key="customSize" width="310" height="50"/>
+                            </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="bXG-ml-HcY" id="CS2-ok-mE1"/>
@@ -64,7 +88,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hX-FJ-2eE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1943" y="-226"/>
+            <point key="canvasLocation" x="1941.5999999999999" y="-226.23688155922042"/>
         </scene>
         <!--Emoji Detail View Controller-->
         <scene sceneID="mGd-2J-ImE">
@@ -157,7 +181,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emote" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-dX-ruG">
-                                <rect key="frame" x="161.5" y="323.5" width="52.5" height="20"/>
+                                <rect key="frame" x="161" y="323.5" width="53" height="20"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

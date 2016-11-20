@@ -26,7 +26,8 @@
 
 @implementation KSEmojisCollectionViewController
 
-static NSString * const reuseIdentifier = @"EmojiCell";
+static NSString * const emojiCellReuseIdentifier = @"EmojiCell";
+static NSString * const defaultCellReuseIdentifier = @"DefaultCell";
 static NSString * const detailsSegueIdentifier = @"EmojiDetailSegue";
 static NSUInteger const imageWidth = 25;
 
@@ -83,35 +84,50 @@ static NSUInteger const imageWidth = 25;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _emojis.count;
+    return _emojis.count ? _emojis.count : 1;
 }
 
 #pragma mark UICollectionViewDelegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    KSEmoji *emoji = _emojis[indexPath.row];
     
-    if (emoji.image)
+    if (_emojis && _emojis.count > 0)
     {
-        [cell updateCellWithEmoji:emoji];
+        KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:emojiCellReuseIdentifier forIndexPath:indexPath];
+        KSEmoji *emoji = _emojis[indexPath.row];
+        
+        if (emoji.image)
+        {
+            [cell updateCellWithEmoji:emoji];
+        }
+        else
+        {
+            [cell updateCellWithPlaceholder];
+            if (!self.collectionView.dragging && !self.collectionView.decelerating)
+            {
+                [self beginEmojiImageDownloadForEmoji:emoji forIndexPath:indexPath];
+            }
+        }
+        
+        return cell;
     }
     else
     {
-        [cell updateCellWithPlaceholder];
-        if (!self.collectionView.dragging && !self.collectionView.decelerating)
-        {
-            [cell showActivityIndicator];
-            [self beginEmojiImageDownloadForEmoji:emoji forIndexPath:indexPath];
-        }
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:defaultCellReuseIdentifier forIndexPath:indexPath];
+        return cell;
     }
-    
-    return cell;
 }
 
 #pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(_imageSize, _imageSize);
+    if (_emojis)
+    {
+        return CGSizeMake(_imageSize, _imageSize);
+    }
+    else
+    {
+        return CGSizeMake(self.view.bounds.size.width, imageWidth);
+    }
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -136,15 +152,16 @@ static NSUInteger const imageWidth = 25;
             if (emojis)
             {
                 _emojis = emojis;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.collectionView reloadData];
-                    [_refreshControl endRefreshing];
-                });
             }
             else if (error)
             {
                 [KSUtility showErrorWithMessage:error.localizedDescription onViewController:self];
             }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_refreshControl endRefreshing];
+                [self.collectionView reloadData];
+            });
         }];
     }
     else
@@ -163,9 +180,10 @@ static NSUInteger const imageWidth = 25;
     {
         emojiImageDownloader = [KSEmojiImageDownloader new];
         _emojiImageDownloadsInProgress[indexPath] = emojiImageDownloader;
+        KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+        [cell showActivityIndicator];
         [emojiImageDownloader startEmojiImageDownloadWithURL:emoji.URL WithCompletion:^(NSData *data, NSError *error) {
             [_emojiImageDownloadsInProgress removeObjectForKey:indexPath];
-            KSEmojiCollectionViewCell *cell = (KSEmojiCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
             if (data)
             {
                 emoji.image = [UIImage imageWithData:data];

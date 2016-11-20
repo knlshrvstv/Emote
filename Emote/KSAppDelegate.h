@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  KSAppDelegate.h
 //  Emote
 //
 //  Created by Kunal Shrivastava on 11/19/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface KSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

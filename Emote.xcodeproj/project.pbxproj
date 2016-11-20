@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B65708491DE09F1300AFFD49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B65708481DE09F1300AFFD49 /* main.m */; };
-		B657084C1DE09F1300AFFD49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B657084B1DE09F1300AFFD49 /* AppDelegate.m */; };
+		B657084C1DE09F1300AFFD49 /* KSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B657084B1DE09F1300AFFD49 /* KSAppDelegate.m */; };
 		B65708521DE09F1300AFFD49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B65708501DE09F1300AFFD49 /* Main.storyboard */; };
 		B65708541DE09F1300AFFD49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B65708531DE09F1300AFFD49 /* Assets.xcassets */; };
 		B65708571DE09F1300AFFD49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B65708551DE09F1300AFFD49 /* LaunchScreen.storyboard */; };
@@ -27,8 +27,8 @@
 /* Begin PBXFileReference section */
 		B65708441DE09F1300AFFD49 /* Emote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B65708481DE09F1300AFFD49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B657084A1DE09F1300AFFD49 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B657084B1DE09F1300AFFD49 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B657084A1DE09F1300AFFD49 /* KSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSAppDelegate.h; sourceTree = "<group>"; };
+		B657084B1DE09F1300AFFD49 /* KSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSAppDelegate.m; sourceTree = "<group>"; };
 		B65708511DE09F1300AFFD49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B65708531DE09F1300AFFD49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B65708561DE09F1300AFFD49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 		B65708471DE09F1300AFFD49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B657084A1DE09F1300AFFD49 /* AppDelegate.h */,
-				B657084B1DE09F1300AFFD49 /* AppDelegate.m */,
+				B657084A1DE09F1300AFFD49 /* KSAppDelegate.h */,
+				B657084B1DE09F1300AFFD49 /* KSAppDelegate.m */,
 				B65708581DE09F1300AFFD49 /* Info.plist */,
 				B65708481DE09F1300AFFD49 /* main.m */,
 			);
@@ -240,7 +240,7 @@
 				B657086D1DE0A79A00AFFD49 /* KSEmojiDataController.m in Sources */,
 				B65708601DE0A1AF00AFFD49 /* KSEmojisCollectionViewController.m in Sources */,
 				B657086A1DE0A47C00AFFD49 /* KSWebServiceController.m in Sources */,
-				B657084C1DE09F1300AFFD49 /* AppDelegate.m in Sources */,
+				B657084C1DE09F1300AFFD49 /* KSAppDelegate.m in Sources */,
 				B65708671DE0A3A700AFFD49 /* KSEmoji.m in Sources */,
 				B657087A1DE1170300AFFD49 /* KSRootViewController.m in Sources */,
 				B657087D1DE1176800AFFD49 /* KSSplashViewController.m in Sources */,

@@ -192,7 +192,7 @@ static NSUInteger const imageWidth = 25;
     [self loadImagesForOnscreenRows];
 }
 
-#pragma mark - Storyboard
+#pragma mark - Segue
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     if ([identifier isEqualToString:detailsSegueIdentifier])

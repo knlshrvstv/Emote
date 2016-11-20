@@ -35,7 +35,7 @@ static NSString * const fetchEmojisURL = @"https://api.github.com/emojis";
                                                      code:101
                                                  userInfo:userInfo];
                 
-                if (completion) completion(nil, nil);
+                if (completion) completion(nil, error);
             }
         }
         else if (error)

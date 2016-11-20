@@ -11,7 +11,7 @@
 @interface KSEmojiDetailViewController ()<CAAnimationDelegate>
 
 @property(nonatomic, strong)  UIImageView *emojiImageView;
-@property (weak, nonatomic) IBOutlet UILabel *emojiLabel;
+@property(weak, nonatomic) IBOutlet UILabel *emojiLabel;
 
 @end
 
@@ -21,7 +21,7 @@ static NSString * const emojiPositionAnimationKey = @"emojiImagePositionBasicAni
 static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation";
 
 #pragma mark - View controller life cycle
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
     [super viewDidLoad];
     
@@ -30,6 +30,12 @@ static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation
     [self setupEmojiImagePositionAnimationWhilePresenting:YES];
     [self setupEmojiImageScaleAnimationWhilePresenting:YES];
     [self setupEmojiLabelOpacityAnimationWhilePresenting:YES];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    self.view = nil;
+    [super viewDidDisappear:animated];
 }
 
 #pragma mark - View setup
@@ -135,14 +141,13 @@ static NSString * const emojiScaleAnimationKey = @"setupEmojiImageScaleAnimation
 }
 
 #pragma mark - IBAction
-- (IBAction)closeButtonAction:(id)sender {
+- (IBAction)closeButtonAction:(id)sender
+{
     
     [self setupEmojiImagePositionAnimationWhilePresenting:NO];
     [self setupEmojiImageScaleAnimationWhilePresenting:NO];
     [self setupEmojiLabelOpacityAnimationWhilePresenting:NO];
 }
-
-
 
 #pragma mark - CAAnimationDelegate
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
